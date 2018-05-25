@@ -23,8 +23,8 @@ class App extends React.Component {
       data: { userName: term }
     })
       .done(function( response) {
-        console.log('from client post  ' +  JSON.stringify(response))
-        alert( "Data Saved: " + response.userName);
+        //console.log('from client post  ' +  JSON.stringify(response))
+        console.log( "Data Saved: " + response.userName);
       });
       
   }
