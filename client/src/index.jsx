@@ -23,7 +23,6 @@ class App extends React.Component {
       data: { userName: term }
     })
       .done((response)   => {
-        //console.log('fromclient post  ' +  JSON.stringify(response))
         this.fetch();
       });
       
