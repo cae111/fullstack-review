@@ -9,7 +9,10 @@ const RepoList = (props) => (
     <div> 
     {props.repos.map(function(repo,index) {
      return (
-     <RepoEntry repo={repo}/>)
+      <div key={index}>
+     <RepoEntry repo={repo}/>
+     </div>
+     )
     })
     }
     </div>
