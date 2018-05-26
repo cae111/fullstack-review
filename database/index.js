@@ -6,10 +6,9 @@ let repoSchema = mongoose.Schema({
   // TODO: your schema here!
   name:String,
   userName:String,
-  decription:String,
   url:String,
-  forks:Number,
-
+  description:String,
+  forks:String
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
@@ -24,5 +23,20 @@ let save = (userRepo) => {
  });
 }
 
-module.exports.save = save;
+let repoList = (cb) => {
+  
+  Repo.find(function(err, data) {
+    //console.log('from mongoose'+data)
+    cb(null,data);
+  }).sort({forks:-1}).limit(25);
+}
 
+module.exports.save = save;
+module.exports.repoList = repoList;
+/*
+Animal.find().byName('fido').exec(function(err, animals) {
+  console.log(animals);
+  collection.find().sort({datefield: -1}, function(err, cursor){...});
+});
+.toArray(function(err, docs) {...});
+*/
