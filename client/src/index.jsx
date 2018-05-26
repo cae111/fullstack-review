@@ -28,41 +28,35 @@ class App extends React.Component {
       });
       
   }
+
   componentDidMount() {
     this.fetch();
-}
+  }
 
 fetch(){
-  let repos;
   $.ajax({
     method: 'GET',
     url: "/repos",
     dataType:"json",
-  }).done(function(response) {
+  }).done((response) => {
       console.log('from client post  ' +  JSON.stringify(response))
-      console.log( "from fetch " + response); 
-     repos = response
+      console.log( "from fetch   " + Array.isArray(response)); 
 
+      this.setState({
+        repos: response
+      }); 
+    
   });
-  this.setState({
-    repos: repos
-  });  
+
+   
 }
-/*
-     getGroceries() {
-    axios.get('/groceries')
-      .then((response) => {
-        this.setState({
-          groceries: response.data
-        })
-      });
-  }
-*/
+
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
       <RepoList repos={this.state.repos}/>
       <Search onSearch={this.search.bind(this)}/>
+     
     </div>)
   }
 }
