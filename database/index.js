@@ -8,7 +8,7 @@ let repoSchema = mongoose.Schema({
   userName:String,
   url:String,
   description:String,
-  forks:String
+  size:Number
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
@@ -28,7 +28,7 @@ let repoList = (cb) => {
   Repo.find(function(err, data) {
     //console.log('from mongoose'+data)
     cb(null,data);
-  }).sort({forks:-1}).limit(25);
+  }).sort({size:-1}).limit(25);
 }
 
 module.exports.save = save;
